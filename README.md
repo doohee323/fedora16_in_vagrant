@@ -2,10 +2,11 @@ Make vagrant vm for Fedora-16
 =====================================
 
 1. requirements
+```
 	curl -L https://get.rvm.io | bash -s stable --rails --autolibs=enabled
 	gem update
 	gem install net-scp
-
+```
 2. install veewee
 	gem install veewee
 	git clone https://github.com/jedi4ever/veewee.git
