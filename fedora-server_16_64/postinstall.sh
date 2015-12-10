@@ -1,16 +1,14 @@
-#!/bin/sh
+#!/bin/bash
 
 date > /etc/vagrant_box_build_time
-
 VBOX_VERSION=$(cat /home/vagrant/.vbox_version)
 
 yum -y update
-
 yum -y install \
-  ruby \
-  ruby-devel \
-  puppet \
-  rubygems \
+ bzip2 \
+ ruby \
+ ruby-devel \
+ rubygems \
   rubygem-erubis \
   rubygem-highline \
   rubygem-json \
@@ -20,15 +18,45 @@ yum -y install \
   rubygem-rest-client \
   rubygem-treetop \
   rubygem-uuidtools
+ tar \
+ zlib-devel
 
+# Install vagrant dependencies
+gem install \
+ chef \
+ puppet \
+ erubis \
+ highline \
+ json \
+ mime-types \
+ net-ssh \
+ polyglot \
+ rest-client \
+ treetop \
+ uuidtools \
+ --no-rdoc --no-ri
+
+# Suppress a puppet error by creating the following group
+groupadd puppet
+
+# Install VirtualBox Guest Additions
 cd /tmp
 wget http://download.virtualbox.org/virtualbox/$VBOX_VERSION/VBoxGuestAdditions_$VBOX_VERSION.iso
 mount -o loop,ro VBoxGuestAdditions_$VBOX_VERSION.iso /mnt
-sh /mnt/VBoxLinuxAdditions.run
+bash /mnt/VBoxLinuxAdditions.run
 umount /mnt
 rm VBoxGuestAdditions_$VBOX_VERSION.iso
+restorecon -R -v /opt
 
-gem install chef --no-rdoc --no-ri
+# Disable Fedora Firstboot questions
+echo "RUN_FIRSTBOOT=NO" > /etc/sysconfig/firstboot
+
+# Enable graphical login
+ln -sf /lib/systemd/system/graphical.target /etc/systemd/system/default.target
+
+echo '' >> /etc/hosts
+echo '# for vm' >> /etc/hosts
+echo '192.168.82.1 dashboard.local.xdn.com' >> /etc/hosts
 
 exit
 

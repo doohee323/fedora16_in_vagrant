@@ -22,7 +22,7 @@ Make vagrant vm for Fedora-16
 
 4. change url in definition.rb
 ```
-	cf. /Users/dhong/tmp/veewee/templates/Fedora-16-x86_64-netboot/definition.rb
+	cf. /Users/dhong/veewee/templates/Fedora-16-x86_64-netboot/definition.rb
 	
 	:iso_file => "Fedora-16-i686-Live-KDE.iso",
 	:iso_src => "http://archives.fedoraproject.org/pub/archive/fedora/linux/releases/16/Live/i686/Fedora-16-i686-Live-KDE.iso",
@@ -43,16 +43,24 @@ Make vagrant vm for Fedora-16
 
 7. add vagrant
 ```
-	vagrant box add 'fedora-server_16_64' '/Users/dhong/tmp/veewee/fedora-server_16_64.box'
+	vagrant box add 'fedora-server_16_64' '/Users/dhong/veewee/fedora-server_16_64.box'
 ```
 
-8. install something in fedora
+8. run vagrant
+```
+	vagrant init 'fedora-server_16_64'
+	vagrant up
+	vagrant ssh
+```
+
+9. install something in fedora
 ```
 	cd /etc/yum.repos.d
 	change all 'https' to 'http' in each *.repo file"
 	
 	baseurl=http://archives.fedoraproject.org/pub/archive/fedora/linux/releases/16/Everything/x86_64/os/
-
+	
+	yum -y update
 ```
 cf. https://cbednarski.com/articles/veewee/
 
