@@ -1,4 +1,4 @@
-This is for build vagrant env.
+fedora16_in_vagrant
 =====================================
 
 Make vagrant vm for Fedora-16
@@ -42,10 +42,3 @@ vagrant box add 'fedora-server_16_64' '/Users/dhong/tmp/veewee/fedora-server_16_
 cd /etc/yum.repos.d
 # change all 'https' to 'http' in each *.repo file"
 # baseurl=http://archives.fedoraproject.org/pub/archive/fedora/linux/releases/16/Everything/x86_64/os/
-
-
-
-
-
-
-# fedora16_in_vagrant
