@@ -1,9 +1,5 @@
-fedora16_in_vagrant
-=====================================
-
 Make vagrant vm for Fedora-16
-
-https://cbednarski.com/articles/veewee/
+=====================================
 
 1. requirements
 	curl -L https://get.rvm.io | bash -s stable --rails --autolibs=enabled
@@ -42,3 +38,7 @@ https://cbednarski.com/articles/veewee/
 	change all 'https' to 'http' in each *.repo file"
 	
 	baseurl=http://archives.fedoraproject.org/pub/archive/fedora/linux/releases/16/Everything/x86_64/os/
+
+	cf. https://cbednarski.com/articles/veewee/
+
+	
