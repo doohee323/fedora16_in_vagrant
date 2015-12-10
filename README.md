@@ -5,7 +5,7 @@ Make vagrant vm for Fedora-16
 
 https://cbednarski.com/articles/veewee/
 
-1. 1. requirements
+1. requirements
 curl -L https://get.rvm.io | bash -s stable --rails --autolibs=enabled
 gem update
 gem install net-scp
@@ -16,8 +16,7 @@ git clone https://github.com/jedi4ever/veewee.git
 cd veewee
 
 3. make a veewee vbox
-#https://github.com/jedi4ever/veewee/tree/master/templates
-#veewee vbox define awesome-ubuntu-server ubuntu-12.04.2-server-amd64
+https://github.com/jedi4ever/veewee/tree/master/templates
 veewee vbox define fedora-server_16_64 Fedora-16-x86_64
 
 4. change url in definition.rb
