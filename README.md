@@ -1,26 +1,26 @@
 Make vagrant vm for Fedora-16
 =====================================
 
-1. requirements
+-. requirements
 ```
 	curl -L https://get.rvm.io | bash -s stable --rails --autolibs=enabled
 	gem update
 	gem install net-scp
 ```
-2. install veewee
+-. install veewee
 ```
 	gem install veewee
 	git clone https://github.com/jedi4ever/veewee.git
 	cd veewee
 ```
 
-3. make a veewee vbox
+-. make a veewee vbox
 ```
 	https://github.com/jedi4ever/veewee/tree/master/templates
 	veewee vbox define fedora-server_16_64 Fedora-16-x86_64
 ```
 
-4. change url in definition.rb
+-. change url in definition.rb
 ```
 	cf. /Users/dhong/veewee/templates/Fedora-16-x86_64-netboot/definition.rb
 	
@@ -28,32 +28,32 @@ Make vagrant vm for Fedora-16
 	:iso_src => "http://archives.fedoraproject.org/pub/archive/fedora/linux/releases/16/Live/i686/Fedora-16-i686-Live-KDE.iso",
 ```
 
-5. build vbox
+-. build vbox
 ```
 	veewee vbox build fedora-server_16_64 -n
 	
 	ll ~/VirtualBox VMs/
 ```
 
-6. export to vagrant
+-. export to vagrant
 ```
 	need to shutdown virtualbox of Fedora-16-x86_64
 	veewee vbox export fedora-server_16_64
 ```
 
-7. add vagrant
+-. add vagrant
 ```
 	vagrant box add 'fedora-server_16_64' '/Users/dhong/veewee/fedora-server_16_64.box'
 ```
 
-8. run vagrant
+-. run vagrant
 ```
 	vagrant init 'fedora-server_16_64'
 	vagrant up
 	vagrant ssh
 ```
 
-9. install something in fedora
+-. install something in fedora
 ```
 	cd /etc/yum.repos.d
 	change all 'https' to 'http' in each *.repo file"
