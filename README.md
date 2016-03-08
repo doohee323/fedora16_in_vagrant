@@ -48,6 +48,7 @@ Make vagrant vm for Fedora-16
 
 -. run vagrant
 ```
+	cd fedora16_in_vagrant
 	vagrant init 'fedora-server_16_64'
 	vagrant up
 	vagrant ssh
@@ -62,6 +63,13 @@ Make vagrant vm for Fedora-16
 	
 	yum -y update
 ```
+
+-. /usr/sbin/biosdevname: No such file or directory error fix
+```
+	vi /opt/vagrant/embedded/gems/gems/vagrant-1.7.2/plugins/guests/fedora/cap/configure_networks.rb
+	/usr/sbin/biosdevname => /sbin/biosdevname
+```
+
 cf. https://cbednarski.com/articles/veewee/
 
 	
