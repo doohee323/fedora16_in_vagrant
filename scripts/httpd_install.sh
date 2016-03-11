@@ -2,6 +2,7 @@
 
 set -x
 
+#export TMP=/root/tmp
 export TMP=/home/vagrant/tmp
 mkdir -p $TMP
 
@@ -15,6 +16,11 @@ make
 sudo make install
 
 # 1) openssh
+sudo rm -Rf /usr/lib64/openssl /usr/local/openssl /usr/share/man/man1/openssl.1ssl.gz
+sudo rm -Rf /usr/local/ssl/bin/openssl /usr/local/ssl/include/openssl /usr/local/include/openssl
+sudo rm -Rf /usr/share/bash-completion/openssl /usr/lib/ruby/1.8/openssl
+sudo rm -Rf /usr/bin/openssl /usr/include/openssl
+
 cd $TMP
 wget https://openssl.org/source/openssl-1.0.2g.tar.gz
 tar xvfz openssl-1.0.2g.tar.gz
@@ -22,6 +28,7 @@ cd openssl-1.0.2g
 ./config --prefix=/usr --openssldir=/etc/ssl --libdir=lib shared zlib-dynamic
 make
 sudo make install
+export PATH=$PATH:/usr/bin/openssl:/usr/include/openssl
 
 # 2) apr
 cd $TMP
@@ -51,7 +58,6 @@ cd $TMP
 wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.38.tar.gz
 tar xvfz pcre-8.38.tar.gz
 cd pcre-8.38
-#  --disable-cpp
 ./configure --prefix=/usr                     \
             --docdir=/usr/share/doc/pcre-8.38 \
             --enable-unicode-properties       \
@@ -67,8 +73,6 @@ wget https://archive.apache.org/dist/httpd/httpd-2.4.18.tar.bz2
 bzip2 -dk httpd-2.4.18.tar.bz2
 tar xvf httpd-2.4.18.tar
 cd httpd-2.4.18
-
-# --prefix=<httpd-path> 
 ./configure --prefix=/usr/local/httpd --with-apr=/usr --with-apr-util=/usr --with-pcre=/usr
 
 make
