@@ -5,6 +5,7 @@ require_relative './bootstrap'
 
 Vagrant.configure("2") do |config|
    config.vm.provider "virtualbox" do |v|
+   	 v.gui = false
      v.customize ["modifyvm", :id, "--cpus", "2"]
    end
 
